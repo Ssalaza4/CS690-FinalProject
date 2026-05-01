@@ -1,3 +1,4 @@
 1:Apple:Mon,Wed,Sat:Thu
 2:Cucumber:Mon,Tue,Wed,Fri:Wed,Thu
 3:Sunflower:Mon,Wed,Fri:Fri
+4:Apple:Mon,Wed,Fri:Tue,Thu
