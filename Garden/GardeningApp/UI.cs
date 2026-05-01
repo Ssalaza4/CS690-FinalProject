@@ -206,7 +206,7 @@ public class UI
 
         AnsiConsole.MarkupLine("[green]Care activity logged.[/]");
     }
-    //used to display our existing care activity history - we have two seperate text files at work and we use ou id as a means to join them 
+    //used to display our existing care activity history - we have two seperate text files at work and we use our id as a means to join them 
     private static void ViewCareHistory(List<Plant> plants)
     {
         List<CareActivity> history = DataManager.LoadCareHistory();
