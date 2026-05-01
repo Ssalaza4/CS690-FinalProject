@@ -24,6 +24,7 @@ public class UI
             "Remove Plant",
             "Log Care Activity",
             "View Care History",
+            "View Reminders",
             "Exit"
         };
 
@@ -60,6 +61,10 @@ public class UI
             else if (choice == "View Care History")
             {
                 ViewCareHistory(plants);
+            }
+            else if (choice == "View Reminders")
+            {
+                ViewReminders(plants);
             }
         }
     }
@@ -232,6 +237,52 @@ public class UI
 
             AnsiConsole.MarkupLine(
                 $"[blue]{plantName}[/] - {activity.ActivityType} on {activity.ActivityDate:yyyy-MM-dd}");
+        }
+    }
+
+    //allows a list of plants that need to be watered or pruned
+    private static void ViewReminders(List<Plant> plants)
+    {
+        string today = DateTime.Today.ToString("ddd");
+
+        var plantsToWater = new List<Plant>();
+        var plantsToPrune = new List<Plant>();
+
+        foreach (var plant in plants)
+        {
+            if (plant.Schedule.WateringDays.Contains(today))
+            {
+                plantsToWater.Add(plant);
+            }
+
+            if (plant.Schedule.PruningDays.Contains(today))
+            {
+                plantsToPrune.Add(plant);
+            }
+        }
+
+        if (plantsToWater.Count == 0 && plantsToPrune.Count == 0)
+        {
+            AnsiConsole.MarkupLine("[green]No care reminders for today.[/]");
+            return;
+        }
+
+        if (plantsToWater.Count > 0)
+        {
+            AnsiConsole.MarkupLine("[yellow]Plants needing water today:[/]");
+            foreach (var plant in plantsToWater)
+            {
+                AnsiConsole.MarkupLine($"[blue]{plant.Id}-{plant.Name}[/]");
+            }
+        }
+
+        if (plantsToPrune.Count > 0)
+        {
+            AnsiConsole.MarkupLine("[yellow]Plants needing pruning today:[/]");
+            foreach (var plant in plantsToPrune)
+            {
+                AnsiConsole.MarkupLine($"[blue]{plant.Id}-{plant.Name}[/]");
+            }
         }
     }
 }
