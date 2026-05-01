@@ -1,2 +1,3 @@
 <Solution>
+  <Project Path="GardeningApp.Tests/GardeningApp.Tests.csproj" />
 </Solution>
